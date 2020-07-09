@@ -4,11 +4,13 @@ from keras.models import load_model
 import cv2
 import numpy as np
 import tensorflow as tf
+import os
 
 class TLClassifier(object):
     def __init__(self):
         #TODO load classifier
-        self.model = load_model("/home/paka/repos/CarND-Capstone/tf_classifier.h5")
+        base_path = os.path.dirname(os.path.abspath(__file__))
+        self.model = load_model(os.path.join(base_path, "tf_classifier.h5"))
         self.model._make_predict_function()
         global graph
         graph = tf.get_default_graph()
@@ -31,4 +33,4 @@ class TLClassifier(object):
         with graph.as_default():
             result = self.model.predict(img[np.newaxis, ...])[0][0]
 
-        return TrafficLight.GREEN if result < .5 else TrafficLight.RED
+        return TrafficLight.GREEN if result < .6 else TrafficLight.RED

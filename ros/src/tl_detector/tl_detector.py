@@ -152,9 +152,6 @@ class TLDetector(object):
 
         timestamp = int(time())
 
-        rospy.loginfo('/home/paka/repos/dataset/'+str(timestamp)+"_" + str(state) + '.jpeg')
-        cv2.imwrite('/home/paka/repos/dataset/'+str(timestamp)+"_" + str(state) + '.jpeg', cv_image)
-
     def process_traffic_lights(self):
         """Finds closest visible traffic light, if one exists, and determines its
             location and color
